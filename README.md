@@ -1,59 +1,59 @@
-#  Refatoração, UML, Herança e Recursos de Áudio
+# Projeto: DVD Bounce em Pygame
 
-## Descrição Geral
-Você deverá partir do projeto existente, que mostra um texto se movimentando pela tela no estilo “DVD” (batendo nas bordas). O objetivo é refatorar o código para torná-lo mais organizado (clean code), adicionar novos comportamentos de movimento (herança e subclasses) e incorporar recursos de áudio (sons e música), além de criar diagramas UML que descrevam tanto o projeto atual quanto a versão final após as melhorias.
+## Descrição
+Este projeto implementa um simulador de movimento de texto semelhante ao clássico DVD screensaver, utilizando a biblioteca Pygame. O texto quica nas bordas da tela, mudando de cor ao colidir. Além disso, há suporte para efeitos sonoros e reprodução de música.
 
+## Diagrama UML
 
-## Itens a Desenvolver
-#### Diagrama UML
+![alt text](assets/Game.png)
 
-- Crie um diagrama UML que represente a estrutura atual do projeto (antes da refatoração).
-Em seguida, crie um segundo diagrama UML que mostre a nova estrutura após as alterações sugeridas (depois da refatoração).
-Os diagramas devem evidenciar as classes, os principais atributos e métodos, bem como as relações de herança (ou de uso).
+## Tecnologias Utilizadas
+- **Python** 3.x
+- **Pygame** para renderização gráfica e manipulação de áudio
 
+## Estrutura do Código
 
-#### Refatorar o Código para “Clean Code”
+O código segue os princípios do **SOLID** e **Clean Code**, garantindo legibilidade, reutilização e fácil manutenção.
 
-- Retirar a função _non_zero() ou encontrar outra forma de gerar velocidades iniciais para o texto, evitando overhead ou repetições desnecessárias.
+### SOLID Principles Aplicados
 
-- Eliminar “números mágicos” (valores fixos no meio do código) e movê-los para constantes ou para o arquivo config.py.
-  
-- Padronizar nomes de variáveis e métodos para que sejam mais expressivos (caso necessário).
-  
-- Separar responsabilidades em módulos ou classes distintas (cores, configuração, lógica de jogo, lógica de movimento, etc.) [Caso necessário].
+1. **Single Responsibility Principle (SRP)**
+   - Cada classe tem uma única responsabilidade.
+   - `MoveTexto` gerencia o movimento e cor do texto.
+   - `handle_music_events` lida com eventos de música separadamente.
+   
+2. **Open/Closed Principle (OCP)**
+   - As classes podem ser estendidas sem modificação.
+   - `MoveTexto` serve como base para `Quica`, `Vertical` e `Horizontal`, que personalizam o comportamento sem alterar a classe base.
 
-### Criar uma Superclasse MoveTexto
+3. **Liskov Substitution Principle (LSP)**
+   - As classes derivadas (`Quica`, `Vertical`, `Horizontal`) podem substituir `MoveTexto` sem impactar o funcionamento.
 
-- Essa classe deve conter os atributos e comportamentos básicos para renderizar e desenhar texto na tela, além de armazenar posição e dimensões.
+4. **Interface Segregation Principle (ISP)**
+   - Cada classe implementa apenas os métodos necessários.
+   - Exemplo: `Vertical` e `Horizontal` sobrescrevem apenas `update`, sem carregar funcionalidades desnecessárias.
 
-- Deve possuir um método update() (abstrato ou genérico) que será sobrescrito pelas subclasses.
+5. **Dependency Inversion Principle (DIP)**
+   - O código depende de abstrações e configurações externas (`config.py`), facilitando mudanças.
 
-### Criar Três Subclasses que Herdam de MoveTexto
+### Clean Code Aplicado
 
-- Classe de texto que “quica”: implementa colisão com as bordas e muda de cor.
-  
-- Classe de texto que se move apenas na vertical: implementa colisão com as bordas e muda de cor.
-  
-- Classe de texto que se move apenas na horizontal (pode ser semelhante ao comportamento atual do projeto) [refatorar para ser uma subclasse].
-  
+- **Nomes Significativos**: Métodos e classes possuem nomes descritivos (`update`, `draw`, `toggle_pause`).
+- **Modularização**: Código dividido em classes especializadas.
+- **Evita Código Duplicado**: Métodos reutilizáveis, como `_change_color`.
+- **Comentários e Docstrings**: Cada classe e método possuem documentação clara.
 
-### Adicionar Sons e Música
+## Como Executar
+1. Instale as dependências:
+   ```bash
+   pip install pygame
+   ```
+2. Execute o script principal:
+   ```bash
+   python main.py
+   ```
 
-- Incluir efeito sonoro ao bater na borda.
-  
-- Adicionar música de fundo que deve tocar em loop.
-  
-- Permitir que o usuário troque de música ao apertar a tecla S, pausar com SPACE e start com a mesma tecla. (Isso pode significar tocar um outro arquivo de música ou pausar e retomar a música, dependendo da escolha)
-
-### Docstrings
-
-- Incluir docstrings em todas as classes e em seus métodos principais, explicando resumidamente o propósito de cada um.
-  
-- Usar docstrings no formato Python (três aspas """), descrevendo parâmetros e retornos de cada método, caso aplicável.
-
-Documentar no README os diagramas UML e o código - evidenciando o SOLID e Clean Code.
-  
- 
-
-
+## Controles
+- `Espaço`: Pausar/Retomar a música
+- `S`: Alternar para a próxima faixa
 

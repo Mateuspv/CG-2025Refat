@@ -1,5 +1,9 @@
 import random
 
+"""
+Configurações do jogo
+"""
+
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
@@ -13,4 +17,8 @@ FPS = 100
 
 SPEED = random.choice([-1, 1])
 
-RANDOMCOLOR = random.randint(10, 255)
+RANDOMCOLORINICIAL = (10)
+RANDOMCOLORFINAL = (255)
+
+SOUNDEFFECT = "./assets/toctoc.mp3"
+MUSICTRACKS = ["./assets/Believer.mp3", "./assets/Eyes Closed.mp3", "./assets/Bones.mp3"]
