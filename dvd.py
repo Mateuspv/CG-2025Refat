@@ -115,7 +115,7 @@ class Quica(MoveTexto):
             self.speed_y *= -1
     
 
-class Vertical(MoveTexto):
+class Horizontal(MoveTexto):
     """
     Variante de MoveTexto que se move apenas horizontalmente.
     """
@@ -136,7 +136,7 @@ class Vertical(MoveTexto):
             self.sound_effect.play()
 
 
-class Horizontal(MoveTexto):
+class Vertical(MoveTexto):
     """
     Variante de MoveTexto que se move apenas verticalmente.
     """
